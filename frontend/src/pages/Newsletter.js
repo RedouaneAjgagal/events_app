@@ -1,7 +1,12 @@
 import NewsletterSignup from '../components/NewsletterSignup';
 
 function Newsletter() {
-    return <NewsletterSignup />
+    return (
+        <div style={{textAlign: 'center'}}>
+            <h1>Signup in our newsletter</h1>
+            <NewsletterSignup />
+        </div>
+    )
 }
 
 export default Newsletter;
