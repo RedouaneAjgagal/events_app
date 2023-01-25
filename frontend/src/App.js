@@ -7,6 +7,7 @@ import NewEvent from './pages/NewEvent';
 import EditEvent from './pages/EditEvent';
 import EventsRoot from './pages/EventsRoot';
 import {action as eventActions} from './components/EventForm';
+import Newsletter, {action as signupData} from './pages/Newsletter';
 const root = createBrowserRouter([
   {
     path: '/', element: <MainRoot />, children: [
@@ -19,6 +20,7 @@ const root = createBrowserRouter([
             ]},
           { path: 'new', element: <NewEvent />, action: eventActions },
         ]},
+      { path: 'newsletter', element: <Newsletter />, action: signupData }
     ]
   }
 ]);
