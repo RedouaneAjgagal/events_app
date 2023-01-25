@@ -1,4 +1,5 @@
 import classes from './EventItem.module.css';
+import { Link } from 'react-router-dom';
 
 function EventItem({ event }) {
   function startDeleteHandler() {
@@ -12,7 +13,7 @@ function EventItem({ event }) {
       <time>{event.date}</time>
       <p>{event.description}</p>
       <menu className={classes.actions}>
-        <a href="edit">Edit</a>
+        <Link to='edit'>Edit</Link>
         <button onClick={startDeleteHandler}>Delete</button>
       </menu>
     </article>
@@ -20,3 +21,9 @@ function EventItem({ event }) {
 }
 
 export default EventItem;
+
+// export const action = async ({params, request}) => {
+//   const id = params.eventId;
+//   const response = await fetch(`http://localhost:8080/events/${id}/edit`);
+
+// }

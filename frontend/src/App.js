@@ -3,9 +3,10 @@ import MainRoot from './pages/MainRoot';
 import Home from './pages/Home';
 import Events, {loader as loadEvents} from './pages/Events';
 import EventDetail, {loader as loadEventDetail} from './pages/EventDetail';
-import NewEvent, {action as addNewEvent} from './pages/NewEvent';
+import NewEvent from './pages/NewEvent';
 import EditEvent from './pages/EditEvent';
 import EventsRoot from './pages/EventsRoot';
+import {action as eventActions} from './components/EventForm';
 const root = createBrowserRouter([
   {
     path: '/', element: <MainRoot />, children: [
@@ -14,9 +15,9 @@ const root = createBrowserRouter([
           { index: true, element: <Events />, loader: loadEvents },
           { path: ':eventId', id: 'eventDetail', loader: loadEventDetail, children: [
               { index: true, element: <EventDetail /> },
-              { path: 'edit', element: <EditEvent /> }
+              { path: 'edit', element: <EditEvent />, action: eventActions }
             ]},
-          { path: 'new', element: <NewEvent />, action: addNewEvent },
+          { path: 'new', element: <NewEvent />, action: eventActions },
         ]},
     ]
   }
