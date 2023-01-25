@@ -7,10 +7,11 @@ import NewEvent from './pages/NewEvent';
 import EditEvent from './pages/EditEvent';
 import EventsRoot from './pages/EventsRoot';
 import {action as eventActions} from './components/EventForm';
+import Error from './pages/Error';
 import Newsletter, {action as signupData} from './pages/Newsletter';
 const root = createBrowserRouter([
   {
-    path: '/', element: <MainRoot />, children: [
+    path: '/', element: <MainRoot />, errorElement: <Error /> , children: [
       { index: true, element: <Home /> },
       { path: 'events', element: <EventsRoot />, children: [
           { index: true, element: <Events />, loader: eventsList },
