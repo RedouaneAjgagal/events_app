@@ -1,7 +1,9 @@
-import { useNavigate, Form, useNavigation, redirect } from 'react-router-dom';
+import { useNavigate, Form, useNavigation, redirect, useActionData } from 'react-router-dom';
 import classes from './EventForm.module.css';
 
 function EventForm({ method, event }) {
+  const actionData = useActionData();
+
   const { state } = useNavigation();
 
   const navigate = useNavigate();
@@ -12,15 +14,18 @@ function EventForm({ method, event }) {
   let submitBtn = 'Save';
   if (state === 'submitting') submitBtn = 'Submitting..'
 
+
+  const errorMsg = actionData?.errors && <ul>{Object.values(actionData.errors).map(error => <li key={error}>{error}</li>)}</ul>
   return (
     <Form method={method} className={classes.form}>
+      {errorMsg}
       <p>
         <label htmlFor="title">Title</label>
         <input id="title" type="text" name="title" required defaultValue={event?.title} />
       </p>
       <p>
         <label htmlFor="image">Image</label>
-        <input id="image" type="url" name="image" required defaultValue={event?.image}/>
+        <input id="image" type="url" name="image" required defaultValue={event?.image} />
       </p>
       <p>
         <label htmlFor="date">Date</label>
@@ -47,23 +52,23 @@ export default EventForm;
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   const data = {
-      title: formData.get('title'),
-      image: formData.get('image'),
-      date: formData.get('date'),
-      description: formData.get('description')
+    title: formData.get('title'),
+    image: formData.get('image'),
+    date: formData.get('date'),
+    description: formData.get('description')
   }
   let url = `http://localhost:8080/events`;
   if (request.method === 'PATCH') {
-      const id = params.eventId
-      url = `http://localhost:8080/events/${id}`
+    const id = params.eventId
+    url = `http://localhost:8080/events/${id}`
   }
   const response = await fetch(url, {
-      method: request.method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+    method: request.method,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
   });
   if (!response.ok) {
-      return response
+    return response
   }
   return redirect('/events')
 }
