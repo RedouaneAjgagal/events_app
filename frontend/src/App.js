@@ -9,7 +9,7 @@ import EventsRoot from './pages/EventsRoot';
 import { action as eventActions } from './components/EventForm';
 import Error from './pages/Error';
 import Newsletter, { action as signupData } from './pages/Newsletter';
-import Authentication from './pages/Authentication'
+import Authentication, {action as formAction} from './pages/Authentication'
 const root = createBrowserRouter([
   {
     path: '/', element: <MainRoot />, errorElement: <Error />, children: [
@@ -27,7 +27,7 @@ const root = createBrowserRouter([
         ]
       },
       { path: 'newsletter', element: <Newsletter />, action: signupData },
-      { path: 'auth', element: <Authentication /> }
+      { path: 'auth', element: <Authentication />, action: formAction }
 ]
   }
 ]);
