@@ -1,9 +1,8 @@
 import classes from './EventItem.module.css';
-import { Link, useSubmit } from 'react-router-dom';
-import { getToken } from '../util/Auth';
+import { Link, useSubmit, useRouteLoaderData } from 'react-router-dom';
 
 function EventItem({ event }) {
-  const token = getToken();
+  const token = useRouteLoaderData('root');
   const submit = useSubmit();
   function startDeleteHandler() {
     const response = window.confirm("Are you sure you want to do that?");

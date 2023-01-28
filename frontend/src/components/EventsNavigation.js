@@ -1,9 +1,8 @@
 import classes from './EventsNavigation.module.css';
-import { Link } from 'react-router-dom';
-import { getToken } from '../util/Auth';
+import { Link, useRouteLoaderData } from 'react-router-dom';
 
 function EventsNavigation() {
-  const token = getToken();
+  const token = useRouteLoaderData('root');
   return (
     <header className={classes.header}>
       <nav>
