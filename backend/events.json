@@ -1,1 +1,12 @@
-{"events":[{"title":"Night mode","image":"https://images.unsplash.com/photo-1599817977364-b6f59e547258?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80","date":"2023-01-13","description":"Lets drink some coffee at night","id":"4df87ec6-a6fc-4564-b496-0a1ed0e208e8"},{"title":"Sunflower Land!","image":"https://nftevening.com/wp-content/uploads/2022/01/FIWfKlXWUAEa9jn-scaled.jpg","date":"2023-01-19","description":"Some Awesome Event","id":"d17acb98-e18d-41a1-980f-5825d15c0511"},{"title":"A dummy event","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","date":"2023-01-19","description":"Join this amazing event and connect with fellow developers.","id":"608e38d5-7ed8-42f0-ace9-7c6d8f0a69c8"}]}
+{
+  "events": [
+    {
+      "title": "A new event",
+      "image": "https://cdn.muenchen-p.de/fl_progressive,q_65/.imaging/stk/responsive/teaser300/dms/va-2016/muenchner-christkindlmarkt/christkindlmarkt-marienplat-logo-hp/document/christkindlmarkt-marienplat-logo-hp.jpg",
+      "date": "2022-10-01",
+      "description": "Some awesome event!",
+      "id": "2a42fcc4-ea21-4bdd-abf6-c40006dc66a9"
+    }
+  ],
+  "users": []
+}
