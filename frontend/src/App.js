@@ -30,7 +30,7 @@ const root = createBrowserRouter([
       },
       { path: 'newsletter', element: <Newsletter />, action: signupData },
       { path: 'auth', element: <Authentication />, action: formAction },
-      { path: 'logout', action: logout }
+      { path: 'logout', action: logout, loader: logout }
     ]
   }
 ]);

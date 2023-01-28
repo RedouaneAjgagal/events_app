@@ -5,8 +5,8 @@ function AuthForm() {
   const [searchParams] = useSearchParams();
   const isLogin = searchParams.get('mode') === 'login';
   const actionData = useActionData();
-  const mainError = actionData?.message ? <p>{actionData.message}</p> : null
-  const displayErrors = actionData?.errors ? <ul>{Object.values(actionData.errors).map(error => <li key={error}>{error}</li>)}</ul> : null
+  const mainError = actionData?.message ? <p>{actionData.message}</p> : null;
+  const displayErrors = actionData?.errors ? <ul>{Object.values(actionData.errors).map(error => <li key={error}>{error}</li>)}</ul> : null;
   return (
     <Form method="post" className={classes.form}>
       {mainError}

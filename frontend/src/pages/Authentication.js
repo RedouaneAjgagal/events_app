@@ -28,5 +28,9 @@ export const action = async ({ request }) => {
   const responseData = await response.json();
   const token = responseData.token;
   localStorage.setItem('token', token);
+
+  const currentTime = new Date();
+  const expiration = new Date(currentTime.setHours(currentTime.getHours() + 1));
+  localStorage.setItem('expiration', expiration.toISOString());
   return redirect('/')
 }
