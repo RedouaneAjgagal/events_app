@@ -11,7 +11,7 @@ import Error from './pages/Error';
 import Newsletter, { action as signupData } from './pages/Newsletter';
 import Authentication, { action as formAction } from './pages/Authentication'
 import { logout } from './pages/logout';
-import { getToken } from './util/Auth';
+import { getToken, checkAuth } from './util/Auth';
 const root = createBrowserRouter([
   {
     path: '/', element: <MainRoot />, errorElement: <Error />, id: 'root', loader: getToken, children: [
@@ -22,10 +22,10 @@ const root = createBrowserRouter([
           {
             path: ':eventId', id: 'eventDetail', loader: loadEventDetail, children: [
               { index: true, element: <EventDetail />, action: deleteEvent },
-              { path: 'edit', element: <EditEvent />, action: eventActions }
+              { path: 'edit', element: <EditEvent />, action: eventActions, loader: checkAuth }
             ]
           },
-          { path: 'new', element: <NewEvent />, action: eventActions },
+          { path: 'new', element: <NewEvent />, action: eventActions, loader: checkAuth },
         ]
       },
       { path: 'newsletter', element: <Newsletter />, action: signupData },
