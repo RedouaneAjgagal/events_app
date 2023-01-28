@@ -1,4 +1,5 @@
-import { useNavigate, Form, useNavigation, redirect, useActionData } from 'react-router-dom';
+import { useNavigate, Form, useNavigation, redirect, useActionData, json } from 'react-router-dom';
+import { getToken } from '../util/Auth';
 import classes from './EventForm.module.css';
 
 function EventForm({ method, event }) {
@@ -19,6 +20,7 @@ function EventForm({ method, event }) {
   return (
     <Form method={method} className={classes.form}>
       {errorMsg}
+      {actionData?.message ? <p>{actionData.message}</p> : null}
       <p>
         <label htmlFor="title">Title</label>
         <input id="title" type="text" name="title" required defaultValue={event?.title} />
@@ -62,13 +64,15 @@ export const action = async ({ request, params }) => {
     const id = params.eventId
     url = `http://localhost:8080/events/${id}`
   }
+  const token = getToken();
   const response = await fetch(url, {
     method: request.method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
     body: JSON.stringify(data)
   });
+  if (response.status === 401 || response.status === 422) return response;
   if (!response.ok) {
-    return response
+    return json({ errorMsg: "Couldn't Post Event..." }, { status: 500 })
   }
   return redirect('/events')
 }

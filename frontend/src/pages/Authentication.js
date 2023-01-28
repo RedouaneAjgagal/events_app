@@ -15,12 +15,18 @@ export const action = async ({ request }) => {
     email: data.get('email'),
     password: data.get('password')
   }
+
   const response = await fetch(`http://localhost:8080/${mode}`, {
     method: request.method,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(values)
   });
+
   if (response.status === 401 || response.status === 422) return response
-  if (!response.ok) throw json({ errorMsg: "Couldn't Sumbit Form Data" }, { status: 500 })
+  if (!response.ok) throw json({ errorMsg: "Couldn't Sumbit Form Data" }, { status: 500 });
+
+  const responseData = await response.json();
+  const token = responseData.token;
+  localStorage.setItem('token', token);
   return redirect('/')
 }
